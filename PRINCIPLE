@@ -1,0 +1,18 @@
+{"status": "", "data": "", "message": ""}
+
+以下情形一律回傳200
+
+status:
+前端用此值判斷提示樣式, 錯誤處理
+1. success
+2. warning
+3. error
+
+
+data:
+如果前端需要資料, 用此欄位回傳
+
+message:
+前端提示訊息用
+
+

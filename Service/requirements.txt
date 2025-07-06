@@ -1,0 +1,7 @@
+mysql-connector-python
+flask
+flask_cors
+google-api-python-client
+google-auth-oauthlib
+msal
+requests

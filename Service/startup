@@ -1,0 +1,6 @@
+ps -fC python3 | grep {}
+
+cd {}
+source {}
+
+nohup python3 Service.py --{} &
