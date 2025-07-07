@@ -6,14 +6,6 @@ from flask import Blueprint, request, jsonify, redirect, session, make_response
 from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
-from flask_jwt_extended import (
-    create_access_token,
-    create_refresh_token,
-    jwt_required,
-    get_jwt_identity,
-    set_refresh_cookies,
-    unset_jwt_cookies
-)
 
 
 import db_module
@@ -224,16 +216,6 @@ def microsoft_callback():
     response = make_response(response_html)
     return response
 
-@auth_bp.route("/refresh", methods=["POST"])
-@jwt_required(refresh=True)
-def refresh():
-    """
-    Refreshes the access token using a valid refresh token.
-    The refresh token is expected to be in an HttpOnly cookie.
-    """
-    identity = get_jwt_identity()
-    access_token = create_access_token(identity=identity)
-    return jsonify(access_token=access_token)
 
 @auth_bp.route("/logout", methods=["POST"])
 def logout():
@@ -242,17 +224,14 @@ def logout():
     """
     session.clear()
     response = jsonify({"status": "success", "message": "Logged out successfully."})
-    unset_jwt_cookies(response)
     return response
 
 @auth_bp.route("/me")
-@jwt_required()
 def me():
     """
     Returns the profile of the currently logged-in user.
     The user's identity is retrieved from the JWT.
     """
-    current_user_identity = get_jwt_identity()
     
     # In a real application, you would fetch user details from the database
     # using the identity (e.g., user's email or ID).
@@ -262,7 +241,7 @@ def me():
     return jsonify({
         "status": "success",
         "data": {
-            "email": current_user_identity
+            "email": ""
             # Add other user details here after fetching from DB
         }
     })

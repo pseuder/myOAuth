@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Send Google Mail</h3>
+    <h3>Send Microsoft Mail</h3>
     <el-card>
       <el-form
         ref="formRef"

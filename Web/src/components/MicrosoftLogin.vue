@@ -3,14 +3,14 @@
     <div class="flex h-full w-full items-center justify-center p-2 text-center">
       <!-- 登入按鈕 -->
       <template v-if="!userInfo">
-        <el-button type="primary" @click="handleLogin" :loading="loading">
+        <el-button type="primary" @click="handleLogin">
           Login with Microsoft
         </el-button>
       </template>
       <template v-else>
         <img
           :src="userInfo?.picture"
-          alt="User Avatar"
+          alt="Avatar"
           class="h-full w-auto rounded-full object-cover ring-4 ring-indigo-300"
         />
         <div v-if="userInfo" class="flex w-fit flex-col items-center">
